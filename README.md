@@ -79,8 +79,12 @@ Para compartir la solución a esta prueba técnica se pide que el directorio con
 ## :incoming_envelope: Contacto
 
 Diego Padilla **(preferente)**
-<br> Jefe de Departamento
+<br> Jefe de Equipo
 <br> :mailbox: diego.omline@gmail.com
+
+Arturo Bautista **(con copia)**
+<br> Desarrollador Principal
+<br> :mailbox: arturo.omline@gmail.com
 
 Guerlain Bovas
 <br> Director General
@@ -168,6 +172,10 @@ To share the solution to this technical test, the folder with the files must be 
 Diego Padilla **(preferential)**
 <br> Team Leader
 <br> :mailbox: diego.omline@gmail.com
+
+Arturo Bautista **(carbon copy)**
+<br> Lead Developer
+<br> :mailbox: arturo.omline@gmail.com
 
 Guerlain Bovas
 <br> CEO
