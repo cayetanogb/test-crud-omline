@@ -1,9 +1,4 @@
 <template>
-  <!-- <div
-    class="fixed top-4 left-1/2 -translate-x-1/2 rounded-lg text-white bg-green-500 shadow-md py-1 px-3 z-90"
-  >
-    <p>🐜</p>
-  </div> -->
   <Transition name="fade">
     <div v-if="isVisible" :class="bannerClasses">
       {{ message }}
@@ -22,9 +17,9 @@
 import { computed } from 'vue'
 
 const props = defineProps<{
-  message: string
-  type: 'success' | 'error' | 'info'
-  isVisible: boolean
+  message?: string
+  type?: 'success' | 'error' | 'info'
+  isVisible?: boolean
 }>()
 
 const bannerClasses = computed(() => {

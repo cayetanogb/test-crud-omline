@@ -1,5 +1,6 @@
-import { markRaw, ref, type Component } from 'vue'
+import { ref } from 'vue'
 import { defineStore } from 'pinia'
+import type { User } from '@/interfaces/User'
 
 export const useSlideoutStore = defineStore('slideout', () => {
   /**
@@ -14,25 +15,25 @@ export const useSlideoutStore = defineStore('slideout', () => {
    * De ser posible, añade comentarios JSDoc como los ejemplificados en el atributo `show`.
    */
 
-  const contentComponent = ref<Component | null>(null)
   const title = ref('')
+  const user = ref<User>()
 
-  function open(component: Component, textTitle: string) {
-    contentComponent.value = markRaw(component)
+  function open(textTitle: string, userEdit?: User) {
     title.value = textTitle
     show.value = true
+    user.value = userEdit ?? undefined
   }
 
   function close() {
-    contentComponent.value = null
     title.value = ''
     show.value = false
+    user.value = undefined
   }
 
   return {
     show,
-    contentComponent,
     title,
+    user,
     open,
     close,
   }

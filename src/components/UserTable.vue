@@ -8,9 +8,7 @@
         Create New User
       </button>
     </div>
-    <!-- <div v-if="createUser"> -->
-    <CreateUserForm />
-    <!-- </div> -->
+
     <table id="user-table" class="display w-full text-left table-auto">
       <thead>
         <tr>
@@ -27,6 +25,7 @@
           <td>{{ user.email }}</td>
           <td>
             <button
+              @click="openEditUserForm(user)"
               class="py-2 px-4 mr-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-700"
             >
               Edit
@@ -51,23 +50,25 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted } from 'vue'
+import { onMounted } from 'vue'
+import BannerComponent from './BannerComponent.vue'
 
 import { useUserStore } from '../stores/UserStore'
+import { useSlideoutStore } from '../stores/SlideoutStore'
 import { useBannerStore } from '../stores/BannerStore'
+import type { User } from '../interfaces/User'
 
-import CreateUserForm from '@/components/CreateUserForm.vue'
-import BannerComponent from '@/components/BannerComponent.vue'
-
+const slideoutStore = useSlideoutStore()
 const userStore = useUserStore()
 const bannerStore = useBannerStore()
 
-let createUser: boolean = false
+const openCreateUserForm = () => {
+  slideoutStore.open('Create User')
+}
 
-const openCreateUserForm = computed(() => {
-  createUser = true
-  return createUser
-})
+const openEditUserForm = (user: User) => {
+  slideoutStore.open('Update User', user)
+}
 
 onMounted(async () => {
   await userStore.getAllUser()

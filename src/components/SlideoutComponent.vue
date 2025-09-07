@@ -16,7 +16,6 @@
                 para mostrar y ocultar este componente, así como para modificar su contenido.
             -->
       <div
-        v-if="show"
         class="fixed inset-0 bg-gray-600 bg-opacity-50 z-40"
         @click.self="closeSlideout"
       >
@@ -32,7 +31,16 @@
               &times;
             </button>
           </div>
-          <slot></slot>
+          <slot v-if="!slideoutStore.user?.id">
+            <CreateUserForm />
+          </slot>
+          <slot v-else>
+            <UpdateUserForm
+              :id="slideoutStore.user.id"
+              :name="slideoutStore.user.name"
+              :email="slideoutStore.user.email"
+            />
+          </slot>
         </div>
       </div>
     </div>
@@ -40,10 +48,11 @@
 </template>
 
 <script setup lang="ts">
+import CreateUserForm from '@/components/CreateUserForm.vue'
+import UpdateUserForm from '@/components/UpdateUserForm.vue'
 import { useSlideoutStore } from '../stores/SlideoutStore'
 
 const slideoutStore = useSlideoutStore()
-const show = slideoutStore.show
 const title = slideoutStore.title
 const closeSlideout = () => {
   slideoutStore.close()
